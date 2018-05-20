@@ -10,9 +10,9 @@ public class News {
     private String mSection;
     private String mUrl;
 
-    public News(String title, String date, String section, String url) {
+    public News(String title, String date, String section, String url, String author) {
         this.mTitle = title;
-        //this.mAuthor = author;
+        this.mAuthor = author;
         this.mDate = date;
         this.mSection = section;
         this.mUrl = url;

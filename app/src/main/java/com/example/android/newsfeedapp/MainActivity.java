@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
      * URL for news data from the the Guardian dataset
      */
     private static final String GUARDIAN_REQUEST_URL =
-            "http://content.guardianapis.com/search?q=bitcoin&api-key=test";
+            "http://content.guardianapis.com/search?q=bitcoin&api-key=test&show-tags=contributor";
 
     /**
      * Constant value for the news loader ID. We can choose any integer.

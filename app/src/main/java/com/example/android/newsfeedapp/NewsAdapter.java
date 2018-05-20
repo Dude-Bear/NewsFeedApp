@@ -64,11 +64,11 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView sectionView = (TextView) listItemView.findViewById(R.id.section);
         // Display the section of the current news
         sectionView.setText(currentNews.getSection());
-//
-//        // Find the TextView with view ID author
-//        TextView authorView = (TextView) listItemView.findViewById(R.id.author);
-//        // Display the author of the current news
-//        authorView.setText(currentNews.getAuthor());
+
+        // Find the TextView with view ID author
+        TextView authorView = (TextView) listItemView.findViewById(R.id.author);
+        // Display the author of the current news
+        authorView.setText(currentNews.getAuthor());
 
        //Original date String from the server
         String originalDate = currentNews.getDate();
