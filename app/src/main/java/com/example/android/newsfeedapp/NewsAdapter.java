@@ -14,13 +14,18 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * An {@link NewsAdapter} knows how to create a list item layout for each earthquake
+ * An {@link NewsAdapter} knows how to create a list item layout for each news
  * in the data source (a list of {@link News} objects).
  *
  * These list item layouts will be provided to an adapter view like ListView
  * to be displayed to the user.
  */
 public class NewsAdapter extends ArrayAdapter<News> {
+
+    /**
+     * A seperater to divide the date and the time that we get from the guardian service.
+     */
+    private static final String DATE_SEPARATOR = "T";
 
 
     /**
@@ -34,8 +39,8 @@ public class NewsAdapter extends ArrayAdapter<News> {
     }
 
     /**
-     * Returns a list item view that displays information about the earthquake at the given position
-     * in the list of earthquakes.
+     * Returns a list item view that displays information about the news at the given position
+     * in the list of news.
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -47,7 +52,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
                     R.layout.news_list_item, parent, false);
         }
 
-        // Find the earthquake at the given position in the list of earthquakes
+        // Find the news at the given position in the list of news
         News currentNews = getItem(position);
 
         // Find the TextView with view ID title
@@ -64,11 +69,21 @@ public class NewsAdapter extends ArrayAdapter<News> {
 //        TextView authorView = (TextView) listItemView.findViewById(R.id.author);
 //        // Display the author of the current news
 //        authorView.setText(currentNews.getAuthor());
-//
+
+       //Original date String from the server
+        String originalDate = currentNews.getDate();
+
+        String justDate = null;
+
+        if (originalDate.contains(DATE_SEPARATOR)) {
+            String[] parts = originalDate.split(DATE_SEPARATOR);
+            justDate = parts[0];
+        }
+
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
         // Display the date of the current news
-        dateView.setText(currentNews.getDate());
+        dateView.setText(justDate);
 
 
         // Return the list item view that is now showing the appropriate data

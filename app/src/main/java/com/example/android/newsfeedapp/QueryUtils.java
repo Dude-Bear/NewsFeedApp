@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper methods related to requesting and receiving earthquake data from USGS.
+ * Helper methods related to requesting and receiving news data from the Guardian.
  */
 public final class QueryUtils {
 
@@ -145,7 +145,7 @@ public final class QueryUtils {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding earthquakes to
+        // Create an empty ArrayList that we can start adding news to
         List<News> news = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
@@ -157,7 +157,7 @@ public final class QueryUtils {
             JSONObject reader = new JSONObject(newsJSON);
 
             // Extract the JSONArray associated with the key called "features",
-            // which represents a list of features (or earthquakes).
+            // which represents a list of features (or news).
             JSONObject response = reader.getJSONObject("response");
 
             JSONArray newsArray = response.getJSONArray("results");
@@ -197,10 +197,10 @@ public final class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }
 
-        // Return the list of earthquakes
+        // Return the list of news
         return news;
     }
 }
