@@ -12,6 +12,9 @@
     <string name="no_internet_connection">No internet connection.</string>
     <string name="title">Title:</string>
     <string name="section">Section:</string>
+    <string name="section_place_holder">unknown:</string>
     <string name="author">Author:</string>
+    <string name="author_place_holder">unknown</string>
     <string name="date">Date:</string>
+    <string name="date_place_holder">unknown:</string>
 </resources>

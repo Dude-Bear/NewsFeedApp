@@ -187,7 +187,7 @@ public final class QueryUtils {
 
                 // Create a new {@link News} object with the magnitude, location, time,
                 // and url from the JSON response.
-                News n = new News(title, section, date, url);
+                News n = new News(title, date, section, url);
 
                 // Add the new {@link news} to the list of news.
                 news.add(n);
