@@ -1,42 +1,37 @@
 package com.example.android.newsfeedapp;
 
+/**
+ * Created by Bjoer on 20.05.2018
+ */
 public class News {
-    private double mMagnitude;
-
-    private String mLocation;
-
-    private long mTimeInMilliseconds;
-
+    private String mTitle;
+    private String mAuthor;
+    private String mDate;
+    private String mSection;
     private String mUrl;
 
-    /**
-     * Constructs a new {@link News} object.
-     *
-     * @param magnitude          is the magnitude (size) of the earthquake
-     * @param location           is the location where the earthquake happened
-     * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
-     * @param url                url is the website URL to find more details about the earthquake
-     */
-
-    public News(double magnitude, String location, long timeInMilliseconds, String url) {
-        mMagnitude = magnitude;
-        mLocation = location;
-        mTimeInMilliseconds = timeInMilliseconds;
-        mUrl = url;
+    public News(String title, String date, String section, String url) {
+        this.mTitle = title;
+        //this.mAuthor = author;
+        this.mDate = date;
+        this.mSection = section;
+        this.mUrl = url;
     }
 
-
-
-    public double getMagnitude() {
-        return mMagnitude;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public String getLocation() {
-        return mLocation;
+    public String getAuthor() {
+        return mAuthor;
     }
 
-    public long getTimeInMilliseconds() {
-        return mTimeInMilliseconds;
+    public String getDate() {
+        return mDate;
+    }
+
+    public String getSection() {
+        return mSection;
     }
 
     public String getUrl() {

@@ -40,7 +40,7 @@ public final class QueryUtils {
     /**
      * Query the USGS dataset and return a list of {@link News} objects.
      */
-    public static List<News> fetchEarthquakeData(String requestUrl) {
+    public static List<News> fetchNewsData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -52,11 +52,11 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
-        List<News> earthquakes = extractFeatureFromJson(jsonResponse);
+        // Extract relevant fields from the JSON response and create a list of {@link News}
+        List<News> news = extractFeatureFromJson(jsonResponse);
 
         // Return the list of {@link Earthquake}s
-        return earthquakes;
+        return news;
     }
 
     /**
@@ -102,7 +102,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the news JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -139,14 +139,14 @@ public final class QueryUtils {
      * Return a list of {@link News} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<News> extractFeatureFromJson(String earthquakeJSON) {
+    private static List<News> extractFeatureFromJson(String newsJSON) {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(earthquakeJSON)) {
+        if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        List<News> earthquakes = new ArrayList<>();
+        List<News> news = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -154,41 +154,43 @@ public final class QueryUtils {
         try {
 
             // Create a JSONObject from the JSON response string
-            JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
+            JSONObject reader = new JSONObject(newsJSON);
 
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
-            JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
+            JSONObject response = reader.getJSONObject("response");
 
-            // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < earthquakeArray.length(); i++) {
+            JSONArray newsArray = response.getJSONArray("results");
 
-                // Get a single earthquake at position i within the list of earthquakes
-                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+            // For each news in the newsArray, create an {@link News} object
+            for (int i = 0; i < newsArray.length(); i++) {
 
-                // For a given earthquake, extract the JSONObject associated with the
-                // key called "properties", which represents a list of all properties
-                // for that earthquake.
-                JSONObject properties = currentEarthquake.getJSONObject("properties");
+                // Get a single news at position i within the list of news
+                JSONObject currentNews = newsArray.getJSONObject(i);
 
-                // Extract the value for the key called "mag"
-                double magnitude = properties.getDouble("mag");
 
-                // Extract the value for the key called "place"
-                String location = properties.getString("place");
+                // Extract the value for the key called "webtitle"
+                String title = currentNews.getString("webTitle");
 
-                // Extract the value for the key called "time"
-                long time = properties.getLong("time");
+                // Extract the value for the key called "sectionName"
+                String section = currentNews.getString("sectionName");
 
-                // Extract the value for the key called "url"
-                String url = properties.getString("url");
+                // Extract the value for the key called "webPublicationDate"
+                String date = currentNews.getString("webPublicationDate");
 
-                // Create a new {@link Earthquake} object with the magnitude, location, time,
+                // Extract the value for the key called "webUrl"
+                String url = currentNews.getString("webUrl");
+
+                // Extract the value for the key called "author"
+                //String author = currentNews.getString("author");
+
+
+                // Create a new {@link News} object with the magnitude, location, time,
                 // and url from the JSON response.
-                News earthquake = new News(magnitude, location, time, url);
+                News n = new News(title, section, date, url);
 
-                // Add the new {@link Earthquake} to the list of earthquakes.
-                earthquakes.add(earthquake);
+                // Add the new {@link news} to the list of news.
+                news.add(n);
             }
 
         } catch (JSONException e) {
@@ -199,7 +201,7 @@ public final class QueryUtils {
         }
 
         // Return the list of earthquakes
-        return earthquakes;
+        return news;
     }
 }
 
