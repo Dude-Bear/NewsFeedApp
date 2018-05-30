@@ -23,7 +23,7 @@
     <!-- Strings for article preference -->
     <string name="settings_category_label">Article Category</string>
     <string name="settings_category_key" translatable="false">category</string>
-    <string name="settings_category_default" translatable="false">politics</string>
+    <string name="settings_category_default" translatable="false">bitcoin</string>
 
     <!-- Strings for Order-By Preference -->
     <string name="settings_order_by_label">Order By</string>
