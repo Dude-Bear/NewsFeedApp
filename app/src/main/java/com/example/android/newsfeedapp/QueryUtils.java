@@ -180,23 +180,23 @@ public final class QueryUtils {
                 // Extract the value for the key called "webUrl"
                 String url = currentNews.getString("webUrl");
 
-//                //go to the folder "tags"
-//                JSONArray tagsArray = currentNews.getJSONArray("tags");
+                //go to the folder "tags"
+                JSONArray tagsArray = currentNews.getJSONArray("tags");
 
                 // define an empty String for author
-                String author = "unknown";
+                String author = "";
 
-//                //Test if the tagsArray is empty
-//                // For each tag in the tagsArray, create an {@link News} object
-//
-//                if (tagsArray.length() == 0) {
-//                    author = null;
-//                } else {
-//                    for (int j = 0; j < tagsArray.length(); j++) {
-//                        JSONObject currentTag = tagsArray.getJSONObject(j);
-//                        author = currentTag.getString("webTitle");
-//                    }
-//                }
+                //Test if the tagsArray is empty
+                // For each tag in the tagsArray, create an {@link News} object
+
+                if (tagsArray.length() == 0) {
+                    author = "unknown";
+                } else {
+                    for (int j = 0; j < tagsArray.length(); j++) {
+                        JSONObject currentTag = tagsArray.getJSONObject(j);
+                        author = currentTag.getString("webTitle");
+                    }
+                }
 
 
                 // Create a new {@link News} object with the magnitude, location, time,
