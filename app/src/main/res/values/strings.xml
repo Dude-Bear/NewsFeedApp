@@ -13,4 +13,32 @@
     <string name="author_place_holder">unknown</string>
     <string name="date">Date:</string>
     <string name="date_place_holder">unknown:</string>
+
+
+    <!-- Settings Menu Item [CHAR LIMIT=NONE] -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title [CHAR LIMIT=NONE] -->
+    <string name="settings_title">News Feed Settings</string>
+
+    <!-- Strings for article preference -->
+    <string name="settings_category_label">Article Category</string>
+    <string name="settings_category_key" translatable="false">category</string>
+    <string name="settings_category_default" translatable="false">politics</string>
+
+    <!-- Strings for Order-By Preference -->
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_most_recent_value</string>
+
+    <!-- for order-by relevance option -->
+    <string name="settings_order_by_relevance_label">Relevance</string> <!-- changed -->
+    <string name="settings_order_by_relevance_value" translatable="false">relevance</string>
+
+    <!-- for order-by most recent option -->
+    <string name="settings_order_by_most_recent_label">Most Recent</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
+
+    <!-- for order-by most recent option -->
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
 </resources>
